@@ -4,7 +4,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-export default function LoginPage() {
+import CardPage from "./pages/CardPage";
+
+export default function HomePage() {
   const [error, setError] = useState("");
 
   function handleLogout() {
@@ -28,7 +30,7 @@ export default function LoginPage() {
     <Container>
       <Row>
         <Col>
-          <h1>Home Page</h1>
+          <CardPage />
         </Col>
       </Row>
       <Row>
