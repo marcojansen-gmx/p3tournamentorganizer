@@ -5,7 +5,6 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import Cardpage from "./pages/CardPage";
 
 function App() {
   return (
@@ -13,9 +12,6 @@ function App() {
       <Switch>
         <Route exact path="/">
           <LoginPage />
-        </Route>
-        <Route exact path="/card">
-          <Cardpage />
         </Route>
         <Route exact path="/signup">
           <SignupPage />

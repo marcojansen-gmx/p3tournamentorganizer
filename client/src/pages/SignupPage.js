@@ -33,7 +33,7 @@ export default function SignupPage() {
         return resp.json();
       })
       .then(() => {
-        window.location = "/";
+        window.location = "/homepage";
       })
       .catch((error) => {
         setError(error);
@@ -76,7 +76,7 @@ export default function SignupPage() {
       </Row>
       <Row>
         <Col>
-          <Link to="/login">Login</Link>
+          <Link to="/">Login</Link>
         </Col>
       </Row>
     </Container>

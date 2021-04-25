@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "./CardPage.css"
-import MainCard from "./pages/MainCard";
+
+import React, { useState } from "react";
+import MainCard from "./MainCard";
 
 
-export default function FrontCard (props) {
+export default function FrontCard () {
     return (
         <div className="front">
             <div className="image-container">
-                <img className="card-image" src={props.event.image}></img>
-                <h1 className="title">{props.event.name}</h1>
+                <img className="card-image" src="https://78.media.tumblr.com/d98fb931adb117c70f0dbced9e947520/tumblr_pe582mbWip1tlgv32o1_1280.png"></img>
+                <h1 className="title">test</h1>
             </div>
             <MainCard />
         </div>

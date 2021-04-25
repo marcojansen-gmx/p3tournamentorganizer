@@ -33,7 +33,7 @@ export default function LoginPage() {
         return resp.json();
       })
       .then(() => {
-        window.location = "/";
+        window.location = "/homepage";
       })
       .catch((error) => {
         setError(error);

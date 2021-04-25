@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "./CardPage.css"
-import MainCard from "./pages/MainCard";
+
+import React, { useState } from "react";
+import MainCard from "./MainCard";
 
 
-export default function BackCard (props) {
+export default function BackCard () {
     return (
         <div className="back">
             <p>Some sample text to demonstrate how these cards will work, including how they truncate long sentences. This section displays the full-length blog post.</p>

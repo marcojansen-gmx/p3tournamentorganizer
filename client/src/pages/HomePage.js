@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import CardPage from "./pages/CardPage";
+import CardPage from "./CardPage";
 
 export default function HomePage() {
   const [error, setError] = useState("");
@@ -19,7 +19,7 @@ export default function HomePage() {
         if (resp.status !== 200) {
           throw resp.statusText;
         }
-        window.location = "/login";
+        window.location = "/";
       })
       .catch((error) => {
         setError(error);
