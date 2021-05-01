@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 
-import CardPage from "./CardPage";
+import CardFlip from "./CardFlip";
 
-export default function HomePage() {
+export default function HomePage(props) {
   const [error, setError] = useState("");
 
   function handleLogout() {
@@ -30,14 +30,12 @@ export default function HomePage() {
     <Container>
       <Row>
         <Col>
-          <CardPage />
+          <CardFlip {...props} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <Button variant="primary" type="submit" onClick={handleLogout}>
-            Logout
-          </Button>
+
         </Col>
       </Row>
     </Container>

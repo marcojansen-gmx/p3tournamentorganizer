@@ -41,7 +41,7 @@ export default function LoginPage() {
   }
 
   return (
-    <Container>
+    <Container id="mainLoginContainer">
       <Row>
         <Col>
           <h1>Login</h1>

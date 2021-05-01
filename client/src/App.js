@@ -2,24 +2,37 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
-import SignupPage from "./pages/SignupPage";
+import SignupPage2 from "./pages/SignupPage2";
 import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
+import LoginPage2 from "./pages/LoginPage2";
+import Drawer from "./pages/Drawer";
 
 function App() {
+  const props = {
+    eventname:  "eventname_example",
+    eventdate:  "13/13/2022_example",
+    eventlocation:  "eventlocation_example",
+    armylistpoints:  "armylistpoints_example",
+    ticketprice:  "ticketprice_example",
+  };
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <LoginPage />
-        </Route>
-        <Route exact path="/signup">
-          <SignupPage />
-        </Route>
-        <ProtectedRoute exact path="/homepage">
-          <HomePage />
-        </ProtectedRoute>
-      </Switch>
+        <Switch>
+          <Route exact path="/">
+          <LoginPage2 />
+          </Route>
+          <Route exact path="/signup">
+            <SignupPage2 />
+          </Route>
+          <Route exact path="/homepage">
+            <Drawer />
+            <HomePage {...props}/>
+          </Route>
+          <ProtectedRoute exact path="/test">
+            <Drawer />
+            <HomePage />
+          </ProtectedRoute>
+        </Switch>
     </BrowserRouter>
   );
 }

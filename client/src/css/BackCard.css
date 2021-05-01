@@ -1,0 +1,20 @@
+.attentdanceButton {
+    padding-left: 20%;
+    padding-right: 20%;
+    text-align: center;
+}
+
+.goingButton {
+    background-color: rgb(0, 92, 153);
+    color: white;
+}
+
+.maybeButton {
+    background-color: rgb(0, 92, 153);
+    color: white;
+}
+
+.notGoingButton {
+    background-color: rgb(0, 92, 153);
+    color: white;
+}
