@@ -6,6 +6,7 @@ import SignupPage2 from "./pages/SignupPage2";
 import HomePage from "./pages/HomePage";
 import LoginPage2 from "./pages/LoginPage2";
 import Drawer from "./pages/Drawer";
+import createEventForm from "./pages/createEventForm";
 
 function App() {
   const props = {
@@ -27,6 +28,10 @@ function App() {
           <Route exact path="/homepage">
             <Drawer />
             <HomePage {...props}/>
+          </Route>
+          <Route exact path="/createevent">
+            <Drawer />
+            <createEventForm />
           </Route>
           <ProtectedRoute exact path="/test">
             <Drawer />
