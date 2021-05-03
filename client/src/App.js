@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -6,16 +6,27 @@ import SignupPage2 from "./pages/SignupPage2";
 import HomePage from "./pages/HomePage";
 import LoginPage2 from "./pages/LoginPage2";
 import Drawer from "./pages/Drawer";
-import createEventForm from "./pages/createEventForm";
+import axios from "axios";
+// import createEventForm from "./pages/createEventForm";
+ 
+export default function App(){
+  const [cards, setCards] = useState(null);
 
-function App() {
-  const props = {
-    eventname:  "eventname_example",
-    eventdate:  "13/13/2022_example",
-    eventlocation:  "eventlocation_example",
-    armylistpoints:  "armylistpoints_example",
-    ticketprice:  "ticketprice_example",
+  useEffect(() => {
+    axios(
+        '/api/cards',
+      ).then ((result) => {
+        setCards(result.data);
+        console.log(result.data)
+      });
+  }, []);
+
+  if (cards===null){
+    return <div>
+      loading...
+    </div>
   };
+
   return (
     <BrowserRouter>
         <Switch>
@@ -25,21 +36,15 @@ function App() {
           <Route exact path="/signup">
             <SignupPage2 />
           </Route>
-          <Route exact path="/homepage">
+          <ProtectedRoute exact path="/homepage">
             <Drawer />
-            <HomePage {...props}/>
-          </Route>
-          <Route exact path="/createevent">
+            <HomePage cards={cards}/>
+          </ProtectedRoute>
+          {/* <Route exact path="/createevent">
             <Drawer />
             <createEventForm />
-          </Route>
-          <ProtectedRoute exact path="/test">
-            <Drawer />
-            <HomePage />
-          </ProtectedRoute>
+          </Route> */}
         </Switch>
     </BrowserRouter>
-  );
-}
-
-export default App;
+  
+)};

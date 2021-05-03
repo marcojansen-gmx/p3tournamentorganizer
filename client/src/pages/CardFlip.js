@@ -13,10 +13,10 @@ export default function CardPage(props) {
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
       <div onMouseEnter={() => onHover(true)}>
-        <FrontCard {...props}/>
+        <FrontCard {...props.card}/>
       </div>
       <div onMouseLeave={() => onHover(false)}>
-        <BackCard {...props}/>
+        <BackCard {...props.card}/>
       </div>
     </ReactCardFlip>
   );

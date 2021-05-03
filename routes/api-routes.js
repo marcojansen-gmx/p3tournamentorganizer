@@ -51,4 +51,15 @@ module.exports = function (app) {
       });
     }
   });
+  console.log(db)
+  app.get("/api/cards", async (req, res) => {
+    let cardsInfo=[];
+    cardsInfo = await db.Event.findAll().then((data) => {
+      console.log(data)
+      res.json(data);
+    }).catch(e => {
+      console.log('ERROR');
+    })
+  });
 };
+

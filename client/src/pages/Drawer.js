@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -17,8 +18,37 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import EventIcon from "@material-ui/icons/Event";
 import CreateIcon from "@material-ui/icons/Create";
+import EditIcon from "@material-ui/icons/Edit";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const drawerWidth = 240;
+const items = [
+  { icon: <EventIcon />, text: "Show Events", to: "/homepage" },
+  { icon: <CreateIcon />, text: "Create Event", to: "/createevent" },
+  { icon: <EditIcon />, text: "Manage your events", to: "/manageevent" },
+  { icon: <ExitToAppIcon />, text: "Logout", to: "/" },
+];
+
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef((itemProps, ref) => (
+        <Link to={to} ref={ref} {...itemProps} />
+      )),
+    [to]
+  );
+
+  return (
+    <li>
+      <ListItem button component={renderLink}>
+        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -153,16 +183,14 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          {["Show Events", "Create Event", "Manage your events", "Logout"].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <EventIcon /> : <CreateIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )}
+          {items.map((item, index) => (
+            <ListItemLink
+              key={index}
+              icon={item.icon}
+              primary={item.text}
+              to={item.to}
+            ></ListItemLink>
+          ))}
         </List>
         <Divider />
       </Drawer>

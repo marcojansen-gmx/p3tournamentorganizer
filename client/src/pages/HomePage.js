@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Shift } from "ambient-cbg";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -28,15 +29,21 @@ export default function HomePage(props) {
 
   return (
     <Container>
+      <Shift />
       <Row>
-        <Col>
-          <CardFlip {...props} />
-        </Col>
+        {props.cards.map((card) => {
+          return (
+            <Col key={card.id} style={{
+              display: "flex",
+              justifyContent: "center",
+            }}>
+              <CardFlip card={card} />
+            </Col>
+          );
+        })}
       </Row>
       <Row>
-        <Col>
-
-        </Col>
+        <Col></Col>
       </Row>
     </Container>
   );
