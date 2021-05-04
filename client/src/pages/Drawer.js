@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+
   },
   drawerHeader: {
     display: "flex",
@@ -140,7 +141,7 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} drawerHeader>
       <CssBaseline />
       <AppBar
         position="fixed"

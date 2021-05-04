@@ -31,6 +31,129 @@ module.exports = function (app) {
       });
   });
 
+  app.post("/api/attendancegoing", (req, res) => {
+    db.Attendance.findOrCreate({
+      where: {
+        UserId: req.body.userId,
+        EventId: req.body.cardId,
+      },
+      defaults: {
+        UserId: req.body.userId,
+        EventId: req.body.cardId,
+        going: 1,
+        maybe: 0,
+        declined: 0,
+        updatedAt: new Date(),
+        createAt: new Date(),
+      },
+    })
+      .then((model, created) => {
+        if (created) {
+          res.json(model);
+        } else {
+          db.Attendance.update({
+            going: 1,
+            maybe: 0,
+            declined: 0,
+            updatedAt: new Date(),
+          }, {
+            where: {
+              UserId: req.body.userId,
+            EventId: req.body.cardId,
+            }
+          }).then((res) =>{
+            res.end();
+          }) ;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/attendancemaybe", (req, res) => {
+    db.Attendance.findOrCreate({
+      where: {
+        UserId: req.body.userId,
+        EventId: req.body.cardId,
+      },
+      defaults: {
+        UserId: req.body.userId,
+        EventId: req.body.cardId,
+        going: 0,
+        maybe: 1,
+        declined: 0,
+        updatedAt: new Date(),
+        createAt: new Date(),
+      },
+    })
+      .then((model, created) => {
+        if (created) {
+          res.json(model);
+        } else {
+          db.Attendance.update({
+            going: 0,
+            maybe: 1,
+            declined: 0,
+            updatedAt: new Date(),
+          }, {
+            where: {
+              UserId: req.body.userId,
+            EventId: req.body.cardId,
+            }
+          }).then((res) =>{
+            res.end();
+          }) ;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/attendancenotgoing", (req, res) => {
+    db.Attendance.findOrCreate({
+      where: {
+        UserId: req.body.userId,
+        EventId: req.body.cardId,
+      },
+      defaults: {
+        UserId: req.body.userId,
+        EventId: req.body.cardId,
+        going: 0,
+        maybe: 0,
+        declined: 1,
+        updatedAt: new Date(),
+        createAt: new Date(),
+      },
+    })
+      .then((model, created) => {
+        if (created) {
+          res.json(model);
+        } else {
+          db.Attendance.update({
+            going: 0,
+            maybe: 0,
+            declined: 1,
+            updatedAt: new Date(),
+          }, {
+            where: {
+              UserId: req.body.userId,
+            EventId: req.body.cardId,
+            }
+          }).then((res) =>{
+            res.end();
+          }) ;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(401).json(err);
+      });
+  });
+
   // Route for logging user out
   app.get("/api/logout", (req, res) => {
     req.logout();
@@ -51,15 +174,17 @@ module.exports = function (app) {
       });
     }
   });
-  console.log(db)
+  console.log(db);
+
   app.get("/api/cards", async (req, res) => {
-    let cardsInfo=[];
-    cardsInfo = await db.Event.findAll().then((data) => {
-      console.log(data)
-      res.json(data);
-    }).catch(e => {
-      console.log('ERROR');
-    })
+    let cardsInfo = [];
+    cardsInfo = await db.Event.findAll()
+      .then((data) => {
+        console.log(data);
+        res.json(data);
+      })
+      .catch((e) => {
+        console.log("ERROR");
+      });
   });
 };
-

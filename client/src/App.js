@@ -26,7 +26,6 @@ export default function App() {
   useEffect(() => {
     axios("/api/cards").then((result) => {
       setCards(result.data);
-      console.log(result.data);
     });
   }, []);
 
