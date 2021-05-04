@@ -80,7 +80,7 @@ export default function LoginPage() {
       email: email,
       password: password,
     };
-    debugger;
+    
     fetch("/api/login", {
       method: "POST",
       body: JSON.stringify(newUser),

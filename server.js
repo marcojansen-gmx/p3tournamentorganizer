@@ -1,6 +1,9 @@
 // Requiring necessary npm packages
 const express = require("express");
 const session = require("express-session");
+
+// require('dotenv').config()
+// const MySQLStore = require('express-mysql-session')(session);
 // Requiring passport as we've configured it
 const passport = require("./config/passport");
 
@@ -18,6 +21,24 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+// const options = {
+// 	host: 'localhost',
+// 	port: 3306,
+// 	user: 'root',
+// 	password: '@kina1987',
+// 	database: 'eventorganizerDB'
+// };
+
+// const sessionStore = new MySQLStore(options);
+
+// app.use(session({
+// 	key: 'session_cookie_name',
+// 	secret: 'session_cookie_secret',
+// 	store: sessionStore,
+// 	resave: false,
+// 	saveUninitialized: false
+// }));
 
 // We need to use sessions to keep track of our user's login status
 app.use(

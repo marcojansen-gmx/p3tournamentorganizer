@@ -1,11 +1,13 @@
-import CardPicture from "../utils/assets/middlearth250x175.jpg";
-
 import React from "react";
+import { Link } from "react-router-dom";
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 
+import { format } from 'date-fns'
 
+import CardPicture from "../utils/assets/middlearth250x175.jpg";
 
 export default function FrontCard (props) {
+  
     return (
         <div className="front">
         <Card style={{ width: '18rem' }}>
@@ -13,13 +15,13 @@ export default function FrontCard (props) {
           <Card.Body>
             <Card.Title className="title">{props.eventname}</Card.Title>
             <Card.Text>
-                {props.eventdate}
+                Date: {format(new Date(props.eventdate), 'dd/MM/yyyy')}
             </Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            <ListGroupItem>{props.eventlocation}</ListGroupItem>
-            <ListGroupItem>{props.armylistpoints}</ListGroupItem>
-            <ListGroupItem>{props.ticketprice}</ListGroupItem>
+            <ListGroupItem>Eventlocation: {props.eventlocation}</ListGroupItem>
+            <ListGroupItem>Points: {props.armylistpoints}</ListGroupItem>
+            <ListGroupItem>Ticketprice: {props.ticketprice}</ListGroupItem>
           </ListGroup>
         </Card> 
         </div>

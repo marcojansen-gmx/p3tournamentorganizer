@@ -7,44 +7,62 @@ import HomePage from "./pages/HomePage";
 import LoginPage2 from "./pages/LoginPage2";
 import Drawer from "./pages/Drawer";
 import axios from "axios";
-// import createEventForm from "./pages/createEventForm";
- 
-export default function App(){
+import CreateEventForm from "./pages/CreateEventForm";
+
+import { css } from "@emotion/core";
+import PacmanLoader from "react-spinners/PacmanLoader";
+
+export default function App() {
   const [cards, setCards] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [color, setColor] = useState("#ffffff");
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
 
   useEffect(() => {
-    axios(
-        '/api/cards',
-      ).then ((result) => {
-        setCards(result.data);
-        console.log(result.data)
-      });
+    axios("/api/cards").then((result) => {
+      setCards(result.data);
+      console.log(result.data);
+    });
   }, []);
 
-  if (cards===null){
-    return <div>
-      loading...
-    </div>
-  };
+  if (cards === null) {
+    return (
+      <div>
+        <div className="sweet-loading">
+          <PacmanLoader
+            color={color}
+            loading={loading}
+            css={override}
+            size={150}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
+      <Switch>
+        <Route exact path="/">
           <LoginPage2 />
-          </Route>
-          <Route exact path="/signup">
-            <SignupPage2 />
-          </Route>
-          <ProtectedRoute exact path="/homepage">
-            <Drawer />
-            <HomePage cards={cards}/>
-          </ProtectedRoute>
-          {/* <Route exact path="/createevent">
-            <Drawer />
-            <createEventForm />
-          </Route> */}
-        </Switch>
+        </Route>
+        <Route exact path="/signup">
+          <SignupPage2 />
+        </Route>
+        <ProtectedRoute exact path="/homepage">
+          <Drawer />
+          <HomePage cards={cards} />
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/createevent">
+          <Drawer />
+          <CreateEventForm />
+        </ProtectedRoute>
+      </Switch>
     </BrowserRouter>
-  
-)};
+  );
+}

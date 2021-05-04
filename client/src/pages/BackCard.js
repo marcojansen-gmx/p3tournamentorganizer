@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Button from "react-bootstrap/Button";
 
+import { format } from 'date-fns'
 import CardPicture from "../utils/assets/middlearth250x175.jpg";
 import "../css/BackCard.css";
+import TransitionsModal from "./TransitionsModal";
 
 const handleGoing = () => {
 console.log("Going")
@@ -18,6 +20,17 @@ const handleNotGoing = () => {
 }
 
 export default function BackCard (props) {
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
     return (
         <div className="back">
         <Card style={{ width: '18rem' }}>
@@ -25,8 +38,7 @@ export default function BackCard (props) {
           <Card.Body>
             <Card.Title className="title">{props.eventname}</Card.Title>
             <Card.Text>
-                {props.eventdate}
-            </Card.Text>
+                {format(new Date(props.eventdate), 'dd/MM/yyyy')}</Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroupItem>
@@ -44,7 +56,13 @@ export default function BackCard (props) {
               Can't go
             </Button>
             </ListGroupItem>
+            <ListGroupItem>
+            <Button className="modalAttentdanceButton attentdanceButton" onClick={handleOpen}>
+              Check Event Attendance
+            </Button>
+            </ListGroupItem>
           </ListGroup>
+          <TransitionsModal open={open} handleClose={handleClose}/>
         </Card> 
         </div>
 

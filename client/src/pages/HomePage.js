@@ -8,24 +8,24 @@ import Col from "react-bootstrap/Col";
 import CardFlip from "./CardFlip";
 
 export default function HomePage(props) {
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
-  function handleLogout() {
-    fetch("/api/logout", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => {
-        if (resp.status !== 200) {
-          throw resp.statusText;
-        }
-        window.location = "/";
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }
+  // function handleLogout() {
+  //   fetch("/api/logout", {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((resp) => {
+  //       if (resp.status !== 200) {
+  //         throw resp.statusText;
+  //       }
+  //       window.location = "/";
+  //     })
+  //     .catch((error) => {
+  //       setError(error);
+  //     });
+  // }
 
   return (
     <Container>
@@ -36,6 +36,7 @@ export default function HomePage(props) {
             <Col key={card.id} style={{
               display: "flex",
               justifyContent: "center",
+              padding: "20px",
             }}>
               <CardFlip card={card} />
             </Col>

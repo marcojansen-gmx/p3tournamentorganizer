@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function createEventForm(props) {
+export default function CreateEventForm(props) {
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [eventLocation, setEventLocation] = useState("");
