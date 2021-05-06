@@ -3,3 +3,8 @@ INSERT INTO events (eventlocation, eventdate, eventname, availabletickets, armyl
 INSERT INTO events (eventlocation, eventdate, eventname, availabletickets, armylistpoints, ticketprice, linktoplayerspack, userText, createdAt, updatedAt) VALUES ('Northern Board', '2021-08-13 02:27:30', 'Gandalf fury', 32, 450, 25, "examplelink3", 'biggest event ever', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 INSERT INTO events (eventlocation, eventdate, eventname, availabletickets, armylistpoints, ticketprice, linktoplayerspack, userText, createdAt, updatedAt) VALUES ('GG Morley', '2021-06-12 02:27:30', 'Aragorn rides again', 28, 700, 40, "examplelink4", 'prepare for battle', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
+INSERT INTO users (email, password, firstname, lastname, createdAt, updatedAt) VALUES ('Hans.Gruber@gmx.com', 'QSBvJme3TNnPahSmqTr8/TwBYTmcektNWmQ7OW', "Hans", 'Gruber', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (email, password, firstname, lastname, createdAt, updatedAt) VALUES ('Simon.Gruber@gmx.com', 'QSBvJme3TNnPahSmqTr8/TwBYTmcektNWmQ7OW', "Simon", 'Gruber', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (email, password, firstname, lastname, createdAt, updatedAt) VALUES ('Homer.Simpson@gmx.com', 'QSBvJme3TNnPahSmqTr8/TwBYTmcektNWmQ7OW', "Homer", 'Simpson', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (email, password, firstname, lastname, createdAt, updatedAt) VALUES ('John.McLaine@gmx.com', 'QSBvJme3TNnPahSmqTr8/TwBYTmcektNWmQ7OW', "John", 'McLaine', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+

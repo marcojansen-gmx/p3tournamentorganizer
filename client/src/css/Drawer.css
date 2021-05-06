@@ -1,0 +1,14 @@
+.MuiAppBar-colorPrimary {
+    background-color: #13025c !important;
+}
+
+
+.MuiDrawer-paper {
+    background: center !important;
+}
+
+.MuiList-root {
+    background: #13025c !important;
+    color: white;   
+}
+

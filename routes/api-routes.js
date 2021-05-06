@@ -14,6 +14,32 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/attendees/:eventId", (req, res) => {
+    db.Attendance.findAll({
+      where: {
+        EventId: req.params.eventId,
+      },
+    })
+      .then((attendance) => {
+        if (attendance.length === 0) {
+          res.json([]);
+        } else {
+          db.User.findAll({
+            where: {
+              id: attendance.map((att) => att.UserId),
+              going: true,
+            },
+          }).then((data) => {
+            res.json(data);
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(401).json(err);
+      });
+  });
+
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -21,6 +47,8 @@ module.exports = function (app) {
     db.User.create({
       email: req.body.email,
       password: req.body.password,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
     })
       .then(() => {
         res.redirect(307, "/api/login");
@@ -35,35 +63,38 @@ module.exports = function (app) {
     db.Attendance.findOrCreate({
       where: {
         UserId: req.body.userId,
-        EventId: req.body.cardId,
+        EventId: req.body.eventId,
       },
       defaults: {
         UserId: req.body.userId,
-        EventId: req.body.cardId,
+        EventId: req.body.eventId,
         going: 1,
         maybe: 0,
         declined: 0,
         updatedAt: new Date(),
-        createAt: new Date(),
+        createdAt: new Date(),
       },
     })
       .then((model, created) => {
         if (created) {
           res.json(model);
         } else {
-          db.Attendance.update({
-            going: 1,
-            maybe: 0,
-            declined: 0,
-            updatedAt: new Date(),
-          }, {
-            where: {
-              UserId: req.body.userId,
-            EventId: req.body.cardId,
+          db.Attendance.update(
+            {
+              going: 1,
+              maybe: 0,
+              declined: 0,
+              updatedAt: new Date(),
+            },
+            {
+              where: {
+                UserId: req.body.userId,
+                EventId: req.body.eventId,
+              },
             }
-          }).then((res) =>{
+          ).then((res) => {
             res.end();
-          }) ;
+          });
         }
       })
       .catch((err) => {
@@ -76,35 +107,38 @@ module.exports = function (app) {
     db.Attendance.findOrCreate({
       where: {
         UserId: req.body.userId,
-        EventId: req.body.cardId,
+        EventId: req.body.eventId,
       },
       defaults: {
         UserId: req.body.userId,
-        EventId: req.body.cardId,
+        EventId: req.body.eventId,
         going: 0,
         maybe: 1,
         declined: 0,
         updatedAt: new Date(),
-        createAt: new Date(),
+        createdAt: new Date(),
       },
     })
       .then((model, created) => {
         if (created) {
           res.json(model);
         } else {
-          db.Attendance.update({
-            going: 0,
-            maybe: 1,
-            declined: 0,
-            updatedAt: new Date(),
-          }, {
-            where: {
-              UserId: req.body.userId,
-            EventId: req.body.cardId,
+          db.Attendance.update(
+            {
+              going: 0,
+              maybe: 1,
+              declined: 0,
+              updatedAt: new Date(),
+            },
+            {
+              where: {
+                UserId: req.body.userId,
+                EventId: req.body.eventId,
+              },
             }
-          }).then((res) =>{
+          ).then((res) => {
             res.end();
-          }) ;
+          });
         }
       })
       .catch((err) => {
@@ -117,35 +151,38 @@ module.exports = function (app) {
     db.Attendance.findOrCreate({
       where: {
         UserId: req.body.userId,
-        EventId: req.body.cardId,
+        EventId: req.body.eventId,
       },
       defaults: {
         UserId: req.body.userId,
-        EventId: req.body.cardId,
+        EventId: req.body.eventId,
         going: 0,
         maybe: 0,
         declined: 1,
         updatedAt: new Date(),
-        createAt: new Date(),
+        createdAt: new Date(),
       },
     })
       .then((model, created) => {
         if (created) {
           res.json(model);
         } else {
-          db.Attendance.update({
-            going: 0,
-            maybe: 0,
-            declined: 1,
-            updatedAt: new Date(),
-          }, {
-            where: {
-              UserId: req.body.userId,
-            EventId: req.body.cardId,
+          db.Attendance.update(
+            {
+              going: 0,
+              maybe: 0,
+              declined: 1,
+              updatedAt: new Date(),
+            },
+            {
+              where: {
+                UserId: req.body.userId,
+                EventId: req.body.eventId,
+              },
             }
-          }).then((res) =>{
+          ).then((res) => {
             res.end();
-          }) ;
+          });
         }
       })
       .catch((err) => {
@@ -174,11 +211,10 @@ module.exports = function (app) {
       });
     }
   });
-  console.log(db);
 
-  app.get("/api/cards", async (req, res) => {
-    let cardsInfo = [];
-    cardsInfo = await db.Event.findAll()
+  app.get("/api/events", async (req, res) => {
+    let events = [];
+    events = await db.Event.findAll()
       .then((data) => {
         console.log(data);
         res.json(data);

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
-import SignupPage2 from "./pages/SignupPage2";
+import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
-import LoginPage2 from "./pages/LoginPage2";
+import LoginPage from "./pages/LoginPage";
 import Drawer from "./pages/Drawer";
 import axios from "axios";
 import CreateEventForm from "./pages/CreateEventForm";
@@ -13,7 +13,7 @@ import { css } from "@emotion/core";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
 export default function App() {
-  const [cards, setCards] = useState(null);
+  const [events, setEvents] = useState(null);
   const [loading, setLoading] = useState(true);
   const [color, setColor] = useState("#ffffff");
 
@@ -24,12 +24,12 @@ export default function App() {
   `;
 
   useEffect(() => {
-    axios("/api/cards").then((result) => {
-      setCards(result.data);
+    axios("/api/events").then((result) => {
+      setEvents(result.data);
     });
   }, []);
 
-  if (cards === null) {
+  if (events === null) {
     return (
       <div>
         <div className="sweet-loading">
@@ -48,14 +48,14 @@ export default function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <LoginPage2 />
+          <LoginPage />
         </Route>
         <Route exact path="/signup">
-          <SignupPage2 />
+          <SignupPage />
         </Route>
         <ProtectedRoute exact path="/homepage">
           <Drawer />
-          <HomePage cards={cards} />
+          <HomePage events={events} />
         </ProtectedRoute>
         <ProtectedRoute exact path="/createevent">
           <Drawer />

@@ -21,6 +21,8 @@ import CreateIcon from "@material-ui/icons/Create";
 import EditIcon from "@material-ui/icons/Edit";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
+import "../css/Drawer.css";
+
 const drawerWidth = 240;
 const items = [
   { icon: <EventIcon />, text: "Show Events", to: "/homepage" },

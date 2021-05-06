@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
@@ -28,7 +28,7 @@ export default function BackCard(props) {
           method: "POST",
           body: JSON.stringify({
             userId: user.id,
-            cardId: props.id,
+            eventId: props.id,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export default function BackCard(props) {
           method: "POST",
           body: JSON.stringify({
             userId: user.id,
-            cardId: props.id,
+            eventId: props.id,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -78,7 +78,7 @@ export default function BackCard(props) {
           method: "POST",
           body: JSON.stringify({
             userId: user.id,
-            cardId: props.id,
+            eventId: props.id,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -92,7 +92,6 @@ export default function BackCard(props) {
         return resp.json();
       });
   };
-
   return (
     <div className="back">
       <Card style={{ width: "18rem" }}>
@@ -136,6 +135,7 @@ export default function BackCard(props) {
           </ListGroupItem>
           <ListGroupItem>
             <Button
+              variant="primary"
               className="modalAttentdanceButton attentdanceButton"
               onClick={handleOpen}
             >
@@ -143,7 +143,7 @@ export default function BackCard(props) {
             </Button>
           </ListGroupItem>
         </ListGroup>
-        <TransitionsModal open={open} handleClose={handleClose} />
+        <TransitionsModal eventId={props.id} open={open} handleClose={handleClose} />
       </Card>
     </div>
   );

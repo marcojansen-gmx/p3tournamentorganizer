@@ -1,7 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
-
 import { format } from 'date-fns'
 
 import CardPicture from "../utils/assets/middlearth250x175.jpg";
