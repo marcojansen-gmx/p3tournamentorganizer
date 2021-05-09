@@ -146,7 +146,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               fullWidth
-              variant="primary"
+              variant="text"
               onClick={handleSubmit}
               color="primary"
               className={classes.submit}

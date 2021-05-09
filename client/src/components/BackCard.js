@@ -8,6 +8,7 @@ import "../css/BackCard.css";
 import TransitionsModal from "./TransitionsModal";
 
 export default function BackCard(props) {
+  const [isSaving, setIsSaving] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -19,6 +20,7 @@ export default function BackCard(props) {
   };
 
   const handleGoing = () => {
+    setIsSaving(true);
     fetch("/api/user_data")
       .then((resp) => {
         return resp.json();
@@ -40,10 +42,12 @@ export default function BackCard(props) {
           throw resp.statusText;
         }
         return resp.json();
-      });
+      })
+      .then(() => setIsSaving(false));
   };
 
   const handleMaybe = () => {
+    setIsSaving(true);
     fetch("/api/user_data")
       .then((resp) => {
         return resp.json();
@@ -65,10 +69,12 @@ export default function BackCard(props) {
           throw resp.statusText;
         }
         return resp.json();
-      });
+      })
+      .then(() => setIsSaving(false));
   };
 
   const handleNotGoing = () => {
+    setIsSaving(true);
     fetch("/api/user_data")
       .then((resp) => {
         return resp.json();
@@ -90,7 +96,8 @@ export default function BackCard(props) {
           throw resp.statusText;
         }
         return resp.json();
-      });
+      })
+      .then(() => setIsSaving(false));
   };
   return (
     <div className="back">
@@ -105,6 +112,7 @@ export default function BackCard(props) {
         <ListGroup className="list-group-flush">
           <ListGroupItem>
             <Button
+              disabled={isSaving}
               className="goingButton attentdanceButton"
               variant="primary"
               type="submit"
@@ -115,6 +123,7 @@ export default function BackCard(props) {
           </ListGroupItem>
           <ListGroupItem>
             <Button
+              disabled={isSaving}
               className="maybeButton attentdanceButton"
               variant="primary"
               type="submit"
@@ -125,6 +134,7 @@ export default function BackCard(props) {
           </ListGroupItem>
           <ListGroupItem>
             <Button
+              disabled={isSaving}
               className="notGoingButton attentdanceButton"
               variant="primary"
               type="submit"
@@ -143,7 +153,11 @@ export default function BackCard(props) {
             </Button>
           </ListGroupItem>
         </ListGroup>
-        <TransitionsModal eventId={props.id} open={open} handleClose={handleClose} />
+        <TransitionsModal
+          eventId={props.id}
+          open={open}
+          handleClose={handleClose}
+        />
       </Card>
     </div>
   );

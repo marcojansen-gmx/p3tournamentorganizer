@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
 
   },
-  drawerHeader: {
+  drawerheader: {
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0, 1),
@@ -143,7 +143,7 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <div className={classes.root} drawerHeader>
+    <div className={classes.root} drawerheader>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -175,7 +175,7 @@ export default function PersistentDrawerLeft() {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.drawerHeader}>
+        <div className={classes.drawerheader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
@@ -202,7 +202,7 @@ export default function PersistentDrawerLeft() {
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
+        <div className={classes.drawerheader} />
       </main>
     </div>
   );

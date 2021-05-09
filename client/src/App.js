@@ -5,7 +5,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import Drawer from "./pages/Drawer";
+import Drawer from "./components/Drawer";
 import axios from "axios";
 import CreateEventForm from "./pages/CreateEventForm";
 

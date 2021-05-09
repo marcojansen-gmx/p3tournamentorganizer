@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 module.exports = function (sequelize, DataTypes) {
   const User = sequelize.define("User", {
     // The email cannot be null, and must be a proper email before creation
+  
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -42,6 +43,14 @@ module.exports = function (sequelize, DataTypes) {
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };
+  
+  User.prototype.toJSON =  function () {
+    const values = Object.assign({}, this.get());
+  
+    delete values.password;
+    return values;
+  }
+
   // Hooks are automatic methods that run during various phases of the User Model lifecycle
   // In this case, before a User is created, we will automatically hash their password
   User.addHook("beforeCreate", (user) => {

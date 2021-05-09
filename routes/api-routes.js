@@ -16,8 +16,10 @@ module.exports = function (app) {
 
   app.get("/api/attendees/:eventId", (req, res) => {
     db.Attendance.findAll({
+      // include: db.User,
       where: {
         EventId: req.params.eventId,
+        going: true,
       },
     })
       .then((attendance) => {
@@ -27,7 +29,6 @@ module.exports = function (app) {
           db.User.findAll({
             where: {
               id: attendance.map((att) => att.UserId),
-              going: true,
             },
           }).then((data) => {
             res.json(data);
@@ -92,8 +93,8 @@ module.exports = function (app) {
                 EventId: req.body.eventId,
               },
             }
-          ).then((res) => {
-            res.end();
+          ).then((data) => {
+            res.json(data);
           });
         }
       })
@@ -136,8 +137,8 @@ module.exports = function (app) {
                 EventId: req.body.eventId,
               },
             }
-          ).then((res) => {
-            res.end();
+          ).then((data) => {
+            res.json(data);
           });
         }
       })
@@ -180,8 +181,8 @@ module.exports = function (app) {
                 EventId: req.body.eventId,
               },
             }
-          ).then((res) => {
-            res.end();
+          ).then((data) => {
+            res.json(data);
           });
         }
       })
@@ -212,9 +213,29 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/api/events", async (req, res) => {
-    let events = [];
-    events = await db.Event.findAll()
+  app.post("/api/newevent", (req, res) => {
+    db.Event.create({
+      eventname: req.body.eventName,
+      eventdate: req.body.eventDate,
+      eventlocation: req.body.eventLocation,
+      availabletickets: req.body.availableTickets,
+      armylistpoints: req.body.armyListPoints,
+      ticketprice: req.body.ticketPrice,
+      userText: req.body.userText,
+      linktoplayerspack: req.body.linkToPlayerspack,
+    })
+      .then(() => {
+        res.redirect(307, "/homepage");
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(401).json(err);
+      });
+  });
+  
+
+  app.get("/api/events", (req, res) => {
+    db.Event.findAll()
       .then((data) => {
         console.log(data);
         res.json(data);
