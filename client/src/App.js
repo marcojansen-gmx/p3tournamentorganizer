@@ -5,9 +5,10 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import CreateEventForm from "./pages/CreateEventForm";
 import Drawer from "./components/Drawer";
 import axios from "axios";
-import CreateEventForm from "./pages/CreateEventForm";
+
 
 import { css } from "@emotion/core";
 import PacmanLoader from "react-spinners/PacmanLoader";
