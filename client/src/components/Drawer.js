@@ -20,32 +20,11 @@ import EventIcon from "@material-ui/icons/Event";
 import CreateIcon from "@material-ui/icons/Create";
 import EditIcon from "@material-ui/icons/Edit";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import {useHistory} from 'react-router-dom';
 
 import "../css/Drawer.css";
 
 const drawerWidth = 240;
-const items = [
-  {
-    icon: <EventIcon style={{ color: "white" }} />,
-    text: "Show Events",
-    to: "/homepage",
-  },
-  {
-    icon: <CreateIcon style={{ color: "white" }} />,
-    text: "Create Event",
-    to: "/createevent",
-  },
-  {
-    icon: <EditIcon style={{ color: "white" }} />,
-    text: "Manage your events",
-    to: "/manageevent",
-  },
-  {
-    icon: <ExitToAppIcon style={{ color: "white" }} />,
-    text: "Logout",
-    to: "/",
-  },
-];
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
@@ -126,9 +105,39 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersistentDrawerLeft() {
+  const history = useHistory();
   const [error, setError] = useState("");
 
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+
+  const items = [
+    {
+      icon: <EventIcon style={{ color: "white" }} />,
+      text: "Show Events",
+      to: "/homepage",
+    },
+    {
+      icon: <CreateIcon style={{ color: "white" }} />,
+      text: "Create Event",
+      to: "/createevent",
+    },
+    {
+      icon: <EditIcon style={{ color: "white" }} />,
+      text: "Manage your events",
+      to: "/manageevent",
+    },
+    {
+      icon: <ExitToAppIcon style={{ color: "white" }} />,
+      text: "Logout",
+      to: "/",
+      onClick: {handleLogout},
+    },
+  ];
+
   function handleLogout() {
+    
     fetch("/api/logout", {
       headers: {
         "Content-Type": "application/json",
@@ -138,16 +147,12 @@ export default function PersistentDrawerLeft() {
         if (resp.status !== 200) {
           throw resp.statusText;
         }
-        window.location = "/";
+        history.push('/homepage')
       })
       .catch((error) => {
         setError(error);
       });
   }
-
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);

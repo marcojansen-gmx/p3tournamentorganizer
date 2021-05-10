@@ -7,43 +7,8 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import CreateEventForm from "./pages/CreateEventForm";
 import Drawer from "./components/Drawer";
-import axios from "axios";
-
-
-import { css } from "@emotion/core";
-import PacmanLoader from "react-spinners/PacmanLoader";
 
 export default function App() {
-  const [events, setEvents] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState("#ffffff");
-
-  const override = css`
-    display: block;
-    margin: 0 auto;
-    border-color: red;
-  `;
-
-  useEffect(() => {
-    axios("/api/events").then((result) => {
-      setEvents(result.data);
-    });
-  }, []);
-
-  if (events === null) {
-    return (
-      <div>
-        <div className="sweet-loading">
-          <PacmanLoader
-            color={color}
-            loading={loading}
-            css={override}
-            size={150}
-          />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <BrowserRouter>
@@ -56,7 +21,7 @@ export default function App() {
         </Route>
         <ProtectedRoute exact path="/homepage">
           <Drawer />
-          <HomePage events={events} />
+          <HomePage />
         </ProtectedRoute>
         <ProtectedRoute exact path="/createevent">
           <Drawer />

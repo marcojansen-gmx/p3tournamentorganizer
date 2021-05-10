@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import CreateIcon from '@material-ui/icons/Create';
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import {useHistory} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
 
 import backgroundImage from "../utils/assets/backgroundLogin.jpg";
 
@@ -121,7 +121,7 @@ export default function CreateEventForm(props) {
       linkToPlayerspack: linkToPlayerspack,
     };
 
-    fetch("/api/newevent", {
+    fetch("/api/updateevent", {
       method: "POST",
       body: JSON.stringify(newEvent),
       headers: {
