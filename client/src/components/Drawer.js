@@ -25,10 +25,26 @@ import "../css/Drawer.css";
 
 const drawerWidth = 240;
 const items = [
-  { icon: <EventIcon />, text: "Show Events", to: "/homepage" },
-  { icon: <CreateIcon />, text: "Create Event", to: "/createevent" },
-  { icon: <EditIcon />, text: "Manage your events", to: "/manageevent" },
-  { icon: <ExitToAppIcon />, text: "Logout", to: "/" },
+  {
+    icon: <EventIcon style={{ color: "white" }} />,
+    text: "Show Events",
+    to: "/homepage",
+  },
+  {
+    icon: <CreateIcon style={{ color: "white" }} />,
+    text: "Create Event",
+    to: "/createevent",
+  },
+  {
+    icon: <EditIcon style={{ color: "white" }} />,
+    text: "Manage your events",
+    to: "/manageevent",
+  },
+  {
+    icon: <ExitToAppIcon style={{ color: "white" }} />,
+    text: "Logout",
+    to: "/",
+  },
 ];
 
 function ListItemLink(props) {
@@ -82,7 +98,6 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-
   },
   drawerheader: {
     display: "flex",
@@ -167,6 +182,7 @@ export default function PersistentDrawerLeft() {
         </Toolbar>
       </AppBar>
       <Drawer
+        onBlur={handleDrawerClose}
         className={classes.drawer}
         variant="persistent"
         anchor="left"
