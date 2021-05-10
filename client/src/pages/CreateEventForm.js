@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import CreateIcon from '@material-ui/icons/Create';
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import {useLocation, useHistory} from 'react-router-dom';
 
 import backgroundImage from "../utils/assets/backgroundLogin.jpg";
 
@@ -62,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CreateEventForm(props) {
+
+  const history = useHistory();
+
   const classes = useStyles();
   const [error, setError] = useState("");
   const [eventName, setEventName] = useState("");
@@ -131,7 +135,7 @@ export default function CreateEventForm(props) {
         return resp.json();
       })
       .then(() => {
-        window.location = "/homepage";
+        history.push('/homepage')
       })
       .catch((error) => {
         setError(error);
@@ -150,7 +154,7 @@ export default function CreateEventForm(props) {
           <Typography component="h1" variant="h5">
             Create your next Event
           </Typography>
-          <form className={classes.form}>
+          <form onSubmit={handleSubmit} className={classes.form}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -167,12 +171,16 @@ export default function CreateEventForm(props) {
               variant="outlined"
               margin="normal"
               required
+              type="date"
               fullWidth
               id="eventDate"
               label="Event Date"
               name="eventDate"
               autoComplete="eventDate"
               autoFocus
+              InputLabelProps={{
+                shrink: true,
+              }}
               onChange={handleEventDateChange}
             />
             <TextField
@@ -251,7 +259,6 @@ export default function CreateEventForm(props) {
               type="submit"
               fullWidth
               variant="text"
-              onClick={handleSubmit}
               color="primary"
               className={classes.submit}
             >

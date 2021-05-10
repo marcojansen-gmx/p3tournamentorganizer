@@ -224,8 +224,9 @@ module.exports = function (app) {
       userText: req.body.userText,
       linktoplayerspack: req.body.linkToPlayerspack,
     })
-      .then(() => {
-        res.redirect(307, "/homepage");
+      .then((event) => {
+        res.json(event);
+        // res.redirect(307, "/homepage");
       })
       .catch((err) => {
         console.log(err);
