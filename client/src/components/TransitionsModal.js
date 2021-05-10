@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   paper: {
+    width: "40%",
+    height: "50%",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
@@ -55,7 +57,7 @@ export default function TransitionsModal(props) {
             <h2>Going</h2>
             <p>
               {users.map((user) => {
-                return <div>{user.firstname}</div>;
+                return <div>{user.firstname} {user.lastname}</div>;
               })}
             </p>
           </div>
