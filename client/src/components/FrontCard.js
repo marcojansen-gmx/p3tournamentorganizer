@@ -18,9 +18,9 @@ export default function FrontCard(props) {
         <ListGroup className="list-group-flush">
           <ListGroupItem>Eventlocation: {props.eventlocation}</ListGroupItem>
           <ListGroupItem>Points: {props.armylistpoints}</ListGroupItem>
-          <ListGroupItem>Ticketprice: {props.ticketprice}</ListGroupItem>
+          <ListGroupItem>Ticketprice: $ {props.ticketprice}</ListGroupItem>
           <ListGroupItem>Description: {props.userText}</ListGroupItem>
-          <ListGroupItem>Ticketprice: {props.linktoplayerspack}</ListGroupItem>
+          <ListGroupItem>Link to Playerspack: {props.linktoplayerspack}</ListGroupItem>
         </ListGroup>
       </Card>
     </div>

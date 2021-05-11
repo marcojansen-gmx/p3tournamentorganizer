@@ -16,6 +16,7 @@ export default function FrontCardUnderConstruction() {
           <ListGroupItem>Eventlocation: Northern Board</ListGroupItem>
           <ListGroupItem>Points: 650 Points</ListGroupItem>
           <ListGroupItem>Ticketprice: $30</ListGroupItem>
+          <ListGroupItem>Description: Heaps of Fun</ListGroupItem>
         </ListGroup>
       </Card>
     </div>
