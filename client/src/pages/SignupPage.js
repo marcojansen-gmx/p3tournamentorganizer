@@ -77,7 +77,7 @@ export default function SignupPage() {
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
-  };  
+  };
   const handleLastNameChange = (e) => {
     setLastName(e.target.value);
   };
@@ -119,6 +119,10 @@ export default function SignupPage() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
+          <Grid container className={classes.paper}>
+            <h2>Tournament Organizer</h2>
+            <p>The app to manage and attend MESBG tournaments</p>
+          </Grid>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
@@ -150,7 +154,7 @@ export default function SignupPage() {
               onChange={handlePasswordChange}
               autoComplete="current-password"
             />
-                        <TextField
+            <TextField
               variant="outlined"
               margin="normal"
               required
@@ -162,7 +166,7 @@ export default function SignupPage() {
               onChange={handleFirstNameChange}
               autoComplete="current-password"
             />
-                        <TextField
+            <TextField
               variant="outlined"
               margin="normal"
               required
@@ -183,14 +187,14 @@ export default function SignupPage() {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href="/" variant="body2">
                   {"Already signed up? Login here"}

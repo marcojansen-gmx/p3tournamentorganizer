@@ -7,12 +7,10 @@ import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import CreateIcon from '@material-ui/icons/Create';
+import CreateIcon from "@material-ui/icons/Create";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import {useHistory} from 'react-router-dom';
-
-import backgroundImage from "../utils/assets/backgroundLogin.jpg";
+import { useHistory } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -63,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CreateEventForm(props) {
-
   const history = useHistory();
 
   const classes = useStyles();
@@ -135,7 +132,7 @@ export default function CreateEventForm(props) {
         return resp.json();
       })
       .then(() => {
-        history.push('/homepage')
+        history.push("/homepage");
       })
       .catch((error) => {
         setError(error);

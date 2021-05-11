@@ -1,22 +1,14 @@
 .MuiAppBar-colorPrimary {
-    background-color: #13025c !important;
+  background-color: #13025c !important;
 }
-
 
 .MuiDrawer-paper {
-    background: center !important;
-    background-color: rgba(255, 255, 255, 0.8)!important;
-    backdrop-filter: blur(5px);
-
+  background: center !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(5px);
 }
-/* .MuiDrawer-paper::after{
-    content: "";
-    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
-    filter: blur(15px);
-} */
 
 .MuiList-root {
-    background: #13025c !important;
-    color: white;   
+  background: #13025c !important;
+  color: white;
 }
-

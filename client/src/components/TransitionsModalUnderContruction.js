@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -20,23 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal(props) {
+export default function TransitionsModalUnderConstruction(props) {
   const classes = useStyles();
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    if (!props.open) {
-      return;
-    }
-
-    fetch("/api/attendees/" + props.eventId)
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((users) => {
-        setUsers(users);
-      });
-  }, [props.open]);
 
   return (
     <div>
@@ -54,16 +39,15 @@ export default function TransitionsModal(props) {
       >
         <Fade in={props.open}>
           <div className={classes.paper}>
-            <h2>Going</h2>
-            <p>
-              {users.map((user) => {
-                return (
-                  <div>
-                    {user.firstname} {user.lastname}
-                  </div>
-                );
-              })}
-            </p>
+            <h2>UPS, we are sorry but this feature is not available yet</h2>
+            <br />
+            <h2>Please return to other features of the app</h2>
+            <br />
+            <h2>
+              We will have this feature ready for you in the not so distant
+              future
+            </h2>
+            <br />
           </div>
         </Fade>
       </Modal>

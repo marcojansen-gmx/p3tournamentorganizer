@@ -10,7 +10,7 @@ import CardFlip from "../components/CardFlip";
 
 export default function HomePage() {
   const [events, setEvents] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios("/api/events").then((result) => {
@@ -18,12 +18,8 @@ export default function HomePage() {
     });
   }, []);
 
-    if (events === null) {
-    return (
-      <div>
-        loading...
-      </div>
-    );
+  if (events === null) {
+    return <div>loading...</div>;
   }
 
   return (
@@ -32,11 +28,14 @@ export default function HomePage() {
       <Row>
         {events.map((event) => {
           return (
-            <Col key={event.id} style={{
-              display: "flex",
-              justifyContent: "center",
-              padding: "20px",
-            }}>
+            <Col
+              key={event.id}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "20px",
+              }}
+            >
               <CardFlip event={event} />
             </Col>
           );

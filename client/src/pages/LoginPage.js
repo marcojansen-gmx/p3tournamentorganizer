@@ -11,8 +11,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
-import backgroundImage from "../utils/assets/backgroundLogin.jpg";
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -34,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage:
       // "url(../utils/assets/backgroundLogin.jpg)",
       "url(https://static0.srcdn.com/wordpress/wp-content/uploads/2021/04/The-hobbit-the-battle-of-the-five-armies-lord-of-the-rings-the-fellowship-of-the-ring.jpg)",
-      backgroundRepeat: "no-repeat",
+    backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
         ? theme.palette.grey[50]
@@ -83,7 +81,7 @@ export default function LoginPage() {
       email: email,
       password: password,
     };
-    
+
     fetch("/api/login", {
       method: "POST",
       body: JSON.stringify(newUser),
@@ -111,6 +109,10 @@ export default function LoginPage() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
+          <Grid container className={classes.paper}>
+            <h2>Tournament Organizer</h2>
+            <p>The app to manage and attend MESBG tournaments</p>
+          </Grid>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
@@ -154,11 +156,11 @@ export default function LoginPage() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}

@@ -20,7 +20,7 @@ import EventIcon from "@material-ui/icons/Event";
 import CreateIcon from "@material-ui/icons/Create";
 import EditIcon from "@material-ui/icons/Edit";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 import "../css/Drawer.css";
 
@@ -132,12 +132,11 @@ export default function PersistentDrawerLeft() {
       icon: <ExitToAppIcon style={{ color: "white" }} />,
       text: "Logout",
       to: "/",
-      onClick: {handleLogout},
+      onClick: { handleLogout },
     },
   ];
 
   function handleLogout() {
-    
     fetch("/api/logout", {
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +146,7 @@ export default function PersistentDrawerLeft() {
         if (resp.status !== 200) {
           throw resp.statusText;
         }
-        history.push('/homepage')
+        history.push("/homepage");
       })
       .catch((error) => {
         setError(error);
